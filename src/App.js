@@ -1,25 +1,27 @@
-import React, {useEffect, useState} from 'react'
-import axios from 'axios'
 
-export default function Home() {
+import React from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 
-    const [users, setusers] = useState();
+import Navbar from "./components/Navbar"
+import Home from "./components/Home";
+import EditExercise from "./components/EditExercise";
+import ThemeList from "./components/ThemesList";
+import Search from "./components/Search";
 
-    useEffect(() => {
-        axios.get('http://localhost:5000/users')
-        .then(function (response) {
-          // handle success
-          console.log(response.data);
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }, [])
-    return (
-        <div>
-            {users}
-            <h1></h1>
-        </div>
-    )
+function App() {
+  return (
+    <Router>
+      <div>
+      <Navbar />
+      <br/>
+      
+      <Route path="/edit/:id" component={EditExercise} />
+      <Route path="/themes" component={ThemeList} />
+      <Route path="/search" component={Search} />
+      </div>
+    </Router>
+  );
 }
+
+export default App;
