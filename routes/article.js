@@ -8,44 +8,48 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/admin/add').post((req, res) => {
-  const username = req.body.username;
-  const description = req.body.description;
-  const duration = Number(req.body.duration);
+  const title = req.body.title;
+  const text = req.body.text;
   const date = Date.parse(req.body.date);
+  const author = req.body.author;
+  const slug = req.body.slug;
 
-  const newExercise = new Article({
-    username,
-    description,
-    duration,
+
+  const newArticle = new Article({
+    title,
+    text,
     date,
+    author,
+    slug
   });
 
-  newExercise.save()
-  .then(() => res.json('Exercise added!'))
+  newArticle.save()
+  .then(() => res.json('Article added!'))
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/:id').get((req, res) => {
   Article.findById(req.params.id)
-    .then(exercise => res.json(exercise))
+    .then(article => res.json(article))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/admin/:id').delete((req, res) => {
   Article.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Exercise deleted.'))
+    .then(() => res.json('Article deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/admin/update/:id').post((req, res) => {
   Article.findById(req.params.id)
-    .then(exercise => {
-      exercise.username = req.body.username;
-      exercise.description = req.body.description;
-      exercise.duration = Number(req.body.duration);
-      exercise.date = Date.parse(req.body.date);
+    .then(article => {
+      article.title = req.body.username;
+      article.text = req.body.description;
+      article.author = Number(req.body.duration);
+      article.slug = req.body.slug;
+      article.date = Date.parse(req.body.date);
 
-      exercise.save()
+      article.save()
         .then(() => res.json('Exercise updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })

@@ -7,6 +7,15 @@ const articleSchema = new Schema({
     date: {type: Date,required: true },
     author: {type: String, required: true},
     slug: {type: String, required: true},
+    tags: {
+        type: Schema.Types.ObjectId,
+        ref: "Tag"
+      },
+      comments: {
+        type: Schema.Types.ObjectId,
+        ref: "Tag"
+      },
+
 
 },{
     timestamps: true,
