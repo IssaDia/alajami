@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import EditExercise from "./components/EditExercise";
 import ThemeList from "./components/ThemesList";
 import Search from "./components/Search";
+import CreateForm from './components/CreateForm';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       <div>
       <Navbar />
       <br/>
-      
+      <Route path="/" component={Home} />
+      <Route path="/create" component={CreateForm} />
       <Route path="/edit/:id" component={EditExercise} />
       <Route path="/themes" component={ThemeList} />
       <Route path="/search" component={Search} />

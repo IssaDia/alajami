@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const commentSchema = new Schema({
-    text: {type: String, required: true},
+const tagSchema = new Schema({
+    tag: {type: String, required: true},
     date: {type: Date,required: true },
     author: {type: String, required: true},
 
@@ -10,6 +10,6 @@ const commentSchema = new Schema({
     timestamps: true,
 });
 
-const Comment = mongoose.model('Comment', commentSchema);
+const Tag = mongoose.model('Tag', tagSchema);
 
-module.exports = Comment;
+module.exports = Tag;
