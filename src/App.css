@@ -32,7 +32,14 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Form */
+
+textarea.materialize-textarea {
+  height: 36rem !important;
 }

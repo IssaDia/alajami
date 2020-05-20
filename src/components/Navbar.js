@@ -35,18 +35,18 @@ export default function Navbar() {
             </div>
     <div id="nav-container">
         <div className="bg"></div>
-        <div className="button" tabindex="0">
+        <div className="button" tabIndex="0">
         <span className="icon-bar"></span>
         <span className="icon-bar"></span>
         <span className="icon-bar"></span>
         </div>
-        <div id="nav-content" tabindex="0">
+        <div id="nav-content" tabIndex="0">
         <ul>
-            <li><Link onClick={()=>tabChange('home')} href="#0">Home</Link></li>
-            <li><Link onClick={()=>tabChange('themes')} href="#0">Thémes</Link></li>
-            <li><Link onClick={()=>tabChange('search')} href="#0">Search</Link></li>
-            <li><Link onClick={()=>tabChange('contact')} href="#0">Contact</Link></li>
-            <li><Link onClick={()=>tabChange('create')} href="#0">Create</Link></li>
+            <li><Link onClick={()=>tabChange('home')} to="/">Home</Link></li>
+            <li><Link onClick={()=>tabChange('themes')} to="/themes">Thémes</Link></li>
+            <li><Link onClick={()=>tabChange('search')} to="/search">Search</Link></li>
+            <li><Link onClick={()=>tabChange('contact')} to="/contact">Contact</Link></li>
+            <li><Link onClick={()=>tabChange('create')} to="/">Create</Link></li>
 
         </ul>
         </div>
