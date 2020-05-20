@@ -7,7 +7,18 @@ const mongoose = require('mongoose')
 router.route('/').get((req, res) => {
   Category.find()
     .select('title')
+    .populate('articles')
     .then(categories => res.json(categories))
+    
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/category/:id').get((req, res) => {
+  Category.findById(req.params.id)
+    .populate('articles')
+    .exec()
+    .then(categories => res.json(categories.articles))
+    
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

@@ -21,7 +21,7 @@ const articleSchema = new Schema({
       },
       category: {
         type: Schema.Types.ObjectId,
-        ref: "Category"
+        ref: "Category", required: true
       },
     comments: {
       type: Schema.Types.ObjectId,

@@ -14,7 +14,7 @@ function App() {
       <div>
       <Navbar />
       <br/>
-      <Route path="/" component={Home} />
+      <Route path="/" exact component={Home} />
       <Route path="/admin/create" component={CreateForm} />
       <Route path="/themes" component={ThemeList} />
       <Route path="/search" component={Search} />

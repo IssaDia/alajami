@@ -1,11 +1,12 @@
 const router = require('express').Router()
 let Article = require('../models/article.model')
+let Category = require('../models/category.model')
+
 const mongoose = require('mongoose')
 
 
 router.route('/').get((req, res) => {
   Article.find()
-    .select('title, markdown, author, slug')
     .then(articles => res.json(articles))
     .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -15,7 +16,7 @@ router.route('/admin/add').post((req, res) => {
   const markdown = req.body.markdown;
   const author = req.body.author;
   const slug = req.body.slug;
-  const article = req.body.articleId
+  const category = req.body.articleId
 
 
   const newArticle = new Article({
@@ -24,10 +25,13 @@ router.route('/admin/add').post((req, res) => {
     markdown,
     author,
     slug,
-    article
+    category
   });
 
   newArticle.save()
+  .then( function (_id) {
+    return Category.findOneAndUpdate({ _id: req.params.id }, { article:_id }, { new: true });
+  } )
   .then(() => res.status(201).json({
     message : 'Article added!',
     createdArticle : newArticle}))
