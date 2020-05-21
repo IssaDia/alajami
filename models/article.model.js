@@ -9,7 +9,6 @@ const dompurify = createDomPurify(new JSDOM().window)
 
 
 const articleSchema = new Schema({
-    _id: Schema.Types.ObjectId,
     title: {type: String, required: true},
     markdown: {type: String, required: true},
     date: {type: Date,default: Date.now() },
@@ -21,7 +20,7 @@ const articleSchema = new Schema({
       },
       category: {
         type: Schema.Types.ObjectId,
-        ref: "Category", required: true
+        ref: "Category"
       },
     comments: {
       type: Schema.Types.ObjectId,

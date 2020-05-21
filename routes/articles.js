@@ -1,7 +1,5 @@
 const router = require('express').Router()
 let Article = require('../models/article.model')
-let Category = require('../models/category.model')
-
 const mongoose = require('mongoose')
 
 
@@ -29,9 +27,7 @@ router.route('/admin/add').post((req, res) => {
   });
 
   newArticle.save()
-  .then( function (_id) {
-    return Category.findOneAndUpdate({ _id: req.params.id }, { article:_id }, { new: true });
-  } )
+  .then(() => res.redirect(`/articles/${newArticle.slug}`))
   .then(() => res.status(201).json({
     message : 'Article added!',
     createdArticle : newArticle}))
