@@ -1,14 +1,13 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-let slugify = require('slugify')
+const slugify = require('slugify')
+const uniqueValidator = require('mongoose-unique-validator');
+
 
 
 const categorySchema = new Schema({
   _id: Schema.Types.ObjectId,
-  title: {
-    type: String,
-    required: true
-  },
+  title: {type: String, unique: [true, 'Un article avec ce nom existe déja'], required: [true, 'Merci de spécifier un titre']} , 
   article: {
     type: Schema.Types.ObjectId,
     ref: "Article"
@@ -20,6 +19,9 @@ const categorySchema = new Schema({
 }, {
   timestamps: true,
 });
+
+categorySchema.plugin(uniqueValidator);
+
 
 categorySchema.pre('validate', function (next) {
   if (this.title) {

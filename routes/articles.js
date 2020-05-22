@@ -14,7 +14,7 @@ router.route('/admin/add').post((req, res) => {
   const markdown = req.body.markdown;
   const author = req.body.author;
   const slug = req.body.slug;
-  const category = req.body.articleId
+  const category = req.body.theme
 
 
   const newArticle = new Article({

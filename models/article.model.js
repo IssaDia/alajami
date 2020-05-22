@@ -5,22 +5,27 @@ const slugify = require('slugify')
 const createDomPurify = require('dompurify')
 const { JSDOM } = require('jsdom')
 const dompurify = createDomPurify(new JSDOM().window)
+const uniqueValidator = require('mongoose-unique-validator');
+
 
 
 
 const articleSchema = new Schema({
-    title: {type: String, required: true},
-    markdown: {type: String, required: true},
-    date: {type: Date,default: Date.now() },
-    author: {type: String, required: true},
-    slug: {type: String, required: true, unique: true}, 
+    title: {type: String, unique: [true, 'Un article avec ce nom existe déja'], required: [true, 'Merci de spécifier un titre'] , 
+    min: [6, 'Votre titre doit comporter un minimum de 3 caractéres'],max: [12, 'Votre titre doit comporter  un maximum de 255 caractéres'], trim: true},
+    markdown: {type: String, required: [true, 'Merci de spécifier un texte'], min: [6, 'Votre texte doit comporter un minimum de 10 caractéres'],
+    max: [12, 'Votre texte doit comporter  un maximum de 255 caractéres'], trim: true},
+    date: {type: Date,default: Date.now(), trim: true },
+    author: {type: String, required: [true, 'Merci de spécifier un auteur'], min: [6, 'Votre nom d\'auteur doit comporter un minimum de 10 caractéres'],
+    max: [12, 'Votre nom d\'auteur doit comporter  un maximum de 255 caractéres'], trim: true},
+    slug: {type: String, required: true, unique: [true, 'Un article avec ce nom existe déja'], trim: true}, 
     tags: {
         type: Schema.Types.ObjectId,
         ref: "Tag"
       },
       category: {
         type: Schema.Types.ObjectId,
-        ref: "Category"
+        ref: "Category", unique: true
       },
     comments: {
       type: Schema.Types.ObjectId,
@@ -31,6 +36,10 @@ const articleSchema = new Schema({
 },{
     timestamps: true,
 })
+
+
+articleSchema.plugin(uniqueValidator);
+
 
 articleSchema.pre('validate', function(next) {
   if (this.title) {
