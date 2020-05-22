@@ -12,12 +12,11 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 const articleSchema = new Schema({
     title: {type: String, unique: [true, 'Un article avec ce nom existe déja'], required: [true, 'Merci de spécifier un titre'] , 
-    min: [6, 'Votre titre doit comporter un minimum de 3 caractéres'],max: [12, 'Votre titre doit comporter  un maximum de 255 caractéres'], trim: true},
-    markdown: {type: String, required: [true, 'Merci de spécifier un texte'], min: [6, 'Votre texte doit comporter un minimum de 10 caractéres'],
-    max: [12, 'Votre texte doit comporter  un maximum de 255 caractéres'], trim: true},
+    min: [3, 'Votre titre doit comporter un minimum de 3 caractéres'], max: [255, 'Votre titre doit comporter  un maximum de 255 caractéres'], trim: true},
+    markdown: {type: String, required: [true, 'Merci de spécifier un texte'], min: [50, 'Votre texte doit comporter un minimum de 50 caractéres'], trim: true},
     date: {type: Date,default: Date.now(), trim: true },
-    author: {type: String, required: [true, 'Merci de spécifier un auteur'], min: [6, 'Votre nom d\'auteur doit comporter un minimum de 10 caractéres'],
-    max: [12, 'Votre nom d\'auteur doit comporter  un maximum de 255 caractéres'], trim: true},
+    author: {type: String, required: [true, 'Merci de spécifier un auteur'], min: [10, 'Votre nom d\'auteur doit comporter un minimum de 10 caractéres'],
+    max: [255, 'Votre nom d\'auteur doit comporter  un maximum de 255 caractéres'], trim: true},
     slug: {type: String, required: true, unique: [true, 'Un article avec ce nom existe déja'], trim: true}, 
     tags: {
         type: Schema.Types.ObjectId,

@@ -6,9 +6,9 @@ import * as Yup from 'yup'
 
 const validationSchema = Yup.object().shape({
   theme: Yup.string().ensure().required("Merci de spécifier un théme"),
-  title :  Yup.string().min(3, "Votre titre doit comporter un minimum de 3 caractéres").max(255,"Votre titre doit comporter  un maximum de 255 caractéres").required('Merci de spécifier un titre'),
-  markdown :  Yup.string().min(10, "Votre texte doit comporter un minimum de 10 caractéres").max(15000,"Votre texte doit comporter  un maximum de 15000 caractéres").required('Merci de spécifier un texte'),
-  author :  Yup.string().min(3, "Le nom de l'auteur doit comporter un minimum de 3 caractéres").max(50,"Votre nom de l'auteur doit comporter  un maximum de 255 caractéres").required('Merci de spécifier un author'),
+  title :  Yup.string().min(10, "Votre titre doit comporter un minimum de 10 caractéres").max(255,"Votre texte doit comporter  un maximum de 255 caractéres").required('Merci de spécifier un texte'),
+  markdown :  Yup.string().min(50, "Votre texte doit comporter un minimum de 50 caractéres").required('Merci de spécifier un texte'),
+  author :  Yup.string().min(3, "Le nom de l'auteur doit comporter un minimum de 3 caractéres").max(255,"Votre nom de l'auteur doit comporter un maximum de 255 caractéres").required('Merci de spécifier un author'),
 });
 
 export default function CreateForm() {
@@ -49,6 +49,8 @@ export default function CreateForm() {
                 values)
                     .then((response) => {
                       console.log(response);
+                      console.log(values);
+                      
                     }, (error) => {
                       console.log(error);
                     });
