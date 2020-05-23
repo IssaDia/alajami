@@ -3,7 +3,6 @@ import axios from 'axios'
 import ThemeCard from '../components/ThemeCard'
 import Pagination from '../components/Pagination'
 import CardLoarders from './loaders/CardLoarders'
-import slugify from 'slugify'
 
 export default function ThemesList() {
 
@@ -25,6 +24,9 @@ export default function ThemesList() {
  
   }, [])
 
+  console.log(themes);
+  
+
   const itemsPerPage = 6;
   const [currentPage, setcurrentPage] = useState(1);
   const start = currentPage * itemsPerPage - itemsPerPage;
@@ -37,8 +39,8 @@ export default function ThemesList() {
 
   const title = paginatedThemes.map ((theme, index) => {
 
-     return <div className='col-md-4 card-container'>
-            {!loading ? <ThemeCard key={index} title={theme.title} slug={theme.slug}/> : <CardLoarders />}
+     return <div className='col-md-4 card-container' key={index}>
+            {!loading ? <ThemeCard  title={theme.title} slug={theme.slug}/> : <CardLoarders key={index} />}
             </div>
      })
     return (

@@ -4,7 +4,7 @@ export default function Title(props) {
     return (
         <div className='title-container'>
             <h2>
-            <span>{props.title}</span>
+            <span style={{ textTransform: 'uppercase'}}>{props.title}</span>
             </h2>
         </div>
     )

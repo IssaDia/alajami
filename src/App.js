@@ -18,8 +18,8 @@ function App() {
       <Navbar />
       <Route path="/" exact component={Home} />
       <Route path="/admin/create" component={Create} />
-      <Route path="/themes" component={Theme} />
-      <Route path="/:slug" component={Articles} />
+      <Route path="/themes/:slug" component={Articles} />
+      <Route path="/themes" exact component={Theme} />
       <Route path="/search" component={Search} />
       <Footer />
       </div>
