@@ -1,15 +1,16 @@
 import React from 'react'
 import bgTheme from '../images/bg-theme-islam.jpg'
+import { Link } from 'react-router-dom'
 
 
 export default function ThemeCard(props) {
     return (
         <div className="card-grid-space">
-            <a className="card" style={{ backgroundImage:`url(${bgTheme})` }} href="https://codetheweb.blog/2017/10/06/html-syntax/">
+            <Link className="card" style={{ backgroundImage:`url(${bgTheme})` }} to={{pathname: `/${props.slug}`}}>
             <div>
-            <h2>{props.title}</h2>
+            <h3>{props.title}</h3>
             </div>
-            </a>
+            </Link>
         </div>
     )
 }

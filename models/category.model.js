@@ -8,9 +8,9 @@ const uniqueValidator = require('mongoose-unique-validator');
 const categorySchema = new Schema({
   _id: Schema.Types.ObjectId,
   title: {type: String, unique: [true, 'Un article avec ce nom existe déja'], required: [true, 'Merci de spécifier un titre']} , 
-  article: {
+  articles: {
     type: Schema.Types.ObjectId,
-    ref: "Article"
+    ref: "Article",
   },
   slug: {
     type: String

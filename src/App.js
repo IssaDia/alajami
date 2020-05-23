@@ -3,21 +3,25 @@ import React from 'react'
 import './App.scss'
 import { BrowserRouter as Router, Route} from "react-router-dom"
 import Navbar from "./components/Navbar"
-import Home from "./components/Home"
-import ThemeList from "./components/ThemesList"
+import Home from "./pages/Home"
+import Theme from "./pages/Theme"
+import Articles from "./pages/SingleTheme"
 import Search from "./components/Search"
 import Create from './components/Create'
+import Footer from './components/Footer'
 
 function App() {
+
   return (
     <Router>
-      <div>
+      <div className='container-fluid'>
       <Navbar />
-      <br/>
       <Route path="/" exact component={Home} />
       <Route path="/admin/create" component={Create} />
-      <Route path="/themes" component={ThemeList} />
+      <Route path="/themes" component={Theme} />
+      <Route path="/:slug" component={Articles} />
       <Route path="/search" component={Search} />
+      <Footer />
       </div>
     </Router>
   );

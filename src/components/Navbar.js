@@ -6,31 +6,22 @@ export default function Navbar() {
 
 
     return (
-    <>    
-    
-        <div className="header">
-            <h1>Que dit vraiment le coran?</h1>
-            <p>Penser et vivre son islamité à la lumiére du Coran</p>
+    <>
+    <div className=' row nav-perso'>
+        <div className='col-md-12'>
+            <h1>Que dit vraiment le coran</h1>
+            <div className='nav-links'>
+                <Link to="/" className="btn-nav">Home</Link>
+                <Link to="/themes" className="btn-nav">Themes</Link>
+                <Link to="/" className="btn-nav">Search</Link>
+                <Link to="/" className="btn-nav">Contact</Link>
             </div>
-    <div id="nav-container">
-        <div className="button" tabIndex="0">
-        <span className="icon-bar"></span>
-        <span className="icon-bar"></span>
-        <span className="icon-bar"></span>
+            
         </div>
-        <div id="nav-content" tabIndex="0">
-        <ul>
-            <li><Link  to="/">Home</Link></li>
-            <li><Link  to="/themes">Thémes</Link></li>
-            <li><Link  to="/search">Search</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-            <li><Link  to="/admin/create">Create</Link></li>
+        
+    </div>  
+   
 
-        </ul>
-        </div>
-    </div>
-
-    
     </>
 
 

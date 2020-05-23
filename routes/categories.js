@@ -7,18 +7,19 @@ const mongoose = require('mongoose')
 
 router.route('/').get((req, res) => {
   Category.find()
-    .populate('artticle')
+    .populate('article')
     .exec()
     .then(data => res.json(data))
 
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/category/:id').get((req, res) => {
+router.route('/category/:slug').get((req, res) => {
 
-      Article.findById(req.params.id)
-        .populate('article')
-        .exec()
+    let slug = req.params.slug
+
+      Category.findOne({slug: slug})
+        .populate('articles')
         .then(data => {
           res.status(200).json(data);
         })

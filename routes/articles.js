@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 
 router.route('/').get((req, res) => {
   Article.find()
+    .populate('category')
     .then(articles => res.json(articles))
     .catch(err => res.status(400).json('Error: ' + err));
 });
