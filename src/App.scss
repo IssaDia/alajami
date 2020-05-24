@@ -1,14 +1,18 @@
+body {
+    background-color: #F1F1F1 !important;
+}
+
 /* Nav */
 
 .nav-perso {
     padding-top: 80px;
     text-align: center;
     margin-bottom: 80px;
-    background: #DCE35B;
+    background: #2980B9;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #45B649, #DCE35B);
+    background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #45B649, #DCE35B);
+    background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
@@ -667,4 +671,103 @@ h2 span {
 .title-container {
     margin-top: 100px;
     margin-bottom: 100px;
+}
+
+/* Home */
+
+#article-container {
+    background-color: #fff;
+    height: 100%;
+    font-family: 'Oswald', sans-serif;
+    margin-left:40px;
+    margin-right:40px;
+
+
+}
+
+.article-title {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    text-align: center;
+    font-size: 40px;
+}
+
+.article-text {
+    font-size: 24px;
+    text-align: justify;
+    padding: 0 60px 0 60px;
+
+}
+
+br {
+    content: "";
+    margin: 2em;
+    display: block;
+    font-size: 30%;
+
+}
+
+/* RECENTS POSTS */
+
+.recents-post {
+    width: 30px;
+    
+}
+
+.recents-posts-header {
+
+    background-color: #000000;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 15px;
+    
+
+}
+
+.recents-posts-header p {
+
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+}
+
+.recents-posts-header i {
+
+    color: #ffffff;
+    float: right;
+    padding-top: 5px;
+
+
+}
+
+.recents-posts-body {
+    
+    background-color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+}
+
+.recents-posts-body h4 {
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+.recents-posts-info{
+    display: flex;
+    justify-content: start;
+
+}
+
+.recents-posts-info p:nth-child(3){
+    font-weight: bold;
+
+}
+
+.recents-posts-info span {
+    margin:  0 15px;
+}
+
+.recents-posts-bloc {
+    border-bottom: 1px solid grey;
 }

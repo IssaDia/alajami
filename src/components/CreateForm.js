@@ -5,7 +5,7 @@ import * as Yup from 'yup'
 
 
 const validationSchema = Yup.object().shape({
-  theme: Yup.string().ensure().required("Merci de spécifier un théme"),
+  category: Yup.string().ensure().required("Merci de spécifier un théme"),
   title :  Yup.string().min(10, "Votre titre doit comporter un minimum de 10 caractéres").max(255,"Votre texte doit comporter  un maximum de 255 caractéres").required('Merci de spécifier un texte'),
   markdown :  Yup.string().min(50, "Votre texte doit comporter un minimum de 50 caractéres").required('Merci de spécifier un texte'),
   author :  Yup.string().min(3, "Le nom de l'auteur doit comporter un minimum de 3 caractéres").max(255,"Votre nom de l'auteur doit comporter un maximum de 255 caractéres").required('Merci de spécifier un author'),
@@ -33,14 +33,12 @@ export default function CreateForm() {
     return <option key={index} value={category._id}>{category.title}</option>
   })
 
-
-
     return (
       <>
       <div className="row">
         <div className='col-md-6 mx-auto form-create'>
           <h1>Ajouter un article</h1>
-          <Formik initialValues={{theme:"", title:"", markdown:"", author:""}} validationSchema={validationSchema} onSubmit={(values,{setSubmitting, resetForm}) => {
+          <Formik initialValues={{category:"", title:"", markdown:"", author:""}} validationSchema={validationSchema} onSubmit={(values,{setSubmitting, resetForm}) => {
             setSubmitting(true);
 
             setTimeout(()=>{
@@ -49,7 +47,6 @@ export default function CreateForm() {
                 values)
                     .then((response) => {
                       console.log(response);
-                      console.log(values);
                       
                     }, (error) => {
                       console.log(error);
@@ -62,11 +59,11 @@ export default function CreateForm() {
             {({values, errors,touched, handleChange, handleBlur,handleSubmit, isSubmitting})=> (
               <form className="col s12" onSubmit={handleSubmit}>
                 <label>Théme</label>
-                <select className={"browser-default " + (touched.theme && errors.theme ? "has-error" : null)} name="theme" value={values.theme} onChange={handleChange} onBlur={handleBlur}>
+                <select className={"browser-default " + (touched.category && errors.category ? "has-error" : null)} name="category" value={values.category} onChange={handleChange} onBlur={handleBlur}>
                   <option value="" disabled defaultValue >Choisissez un théme</option>
                   {category}
                 </select>
-                {touched.theme && errors.theme ? <span className="helper-text">{errors.theme}</span> : null}
+                {touched.category && errors.category ? <span className="helper-text">{errors.category}</span> : null}
                 <div className="row">
                   <div className="input-field col s12">
                     <input id="title" type="text" className="validate" name="title" value={values.title} onChange={handleChange} onBlur={handleBlur} />

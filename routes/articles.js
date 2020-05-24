@@ -10,13 +10,20 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/recents').get((req, res) => {
+  Article.find().sort({createdAt: 'desc'})
+    .select('title date createdAt')
+    .populate('category')
+    .then(articles => res.json(articles))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/admin/add').post((req, res) => {
   const title = req.body.title;
   const markdown = req.body.markdown;
   const author = req.body.author;
   const slug = req.body.slug;
-  const category = req.body.theme
-
+  const category = req.body.category
 
   const newArticle = new Article({
     _id: new mongoose.Types.ObjectId(),

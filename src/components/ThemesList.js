@@ -24,9 +24,6 @@ export default function ThemesList() {
  
   }, [])
 
-  console.log(themes);
-  
-
   const itemsPerPage = 6;
   const [currentPage, setcurrentPage] = useState(1);
   const start = currentPage * itemsPerPage - itemsPerPage;
