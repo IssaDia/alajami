@@ -8,11 +8,7 @@ export default function RecentsPosts() {
     useEffect(() => {
         axios.get('http://localhost:5000/articles/recents')
       .then(function (response) {
-        // handle success
-        console.log(response.data);
         setrecentsArticles(response.data)
-        
-        
       })
       .catch(function (error) {
         // handle error
@@ -20,9 +16,6 @@ export default function RecentsPosts() {
       })
      
       }, [])
-
-      console.log(recentsArticles);
-      
 
     const closeRecentsPosts = (e) => {
         e.preventDefault();
@@ -47,8 +40,9 @@ export default function RecentsPosts() {
                         </div>
                
     } )
+
     return (
-        <div className='col-md-3 recents-posts animate__animated animate__shakeY' id='recents-posts'>
+        <div className='col-md-3 recents-posts animate__animated animate__backInUp' id='recents-posts'>
             <div id='recents-posts-container '>
                         <div className="recents-posts-header row">
                             <div className='col-md-12'>
