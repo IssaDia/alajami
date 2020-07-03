@@ -7,7 +7,6 @@ const articlesRouter = require('./routes/articles')
 const usersRouter = require('./routes/users')
 const categoriesRouter = require('./routes/categories')
 
-
 require('dotenv').config();
 
 // Initialize Express

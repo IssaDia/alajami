@@ -40,7 +40,8 @@ const articleSchema = new Schema({
     type: String,
     required: true,
     unique: [true, 'Un article avec ce nom existe déja'],
-    trim: true
+    trim: true,
+    index: true
   },
   category: [{
     type: Schema.Types.ObjectId,

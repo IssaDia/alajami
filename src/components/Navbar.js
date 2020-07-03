@@ -7,7 +7,7 @@ export default function Navbar() {
 
     return (
     <>
-    <div className=' row nav-perso'>
+    <div className='row nav-perso'>
         <div className='col-md-12'>
             <h1>Que dit vraiment le coran</h1>
             <div className='nav-links'>

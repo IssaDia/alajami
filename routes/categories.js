@@ -19,7 +19,8 @@ router.route('/category/:slug').get((req, res) => {
     let slug = req.params.slug
 
       Category.findOne({slug: slug})
-        .populate('articles')
+      .populate('article')
+      .exec()
         .then(data => {
           res.status(200).json(data);
         })
@@ -29,14 +30,9 @@ router.route('/category/:slug').get((req, res) => {
       router.route('/admin/add').post((req, res) => {
         const title = req.body.title;
         const slug = slugify(req.body.title);
-        const article = req.body.articles;
-
-
-
         const newCategory = new Category({
           _id: new mongoose.Types.ObjectId(),
           title,
-          article,
           slug
         });
 
