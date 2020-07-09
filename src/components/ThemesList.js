@@ -33,7 +33,6 @@ export default function ThemesList() {
     setcurrentPage(page);
   };
 
-
   const title = paginatedThemes.map ((theme, index) => {
 
      return <div className='col-md-4 card-container' key={index}>

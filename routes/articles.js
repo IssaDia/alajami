@@ -1,19 +1,29 @@
 const router = require('express').Router()
 let Article = require('../models/article.model')
+let Category = require('../models/category.model')
 const mongoose = require('mongoose')
 
 
 router.route('/').get((req, res) => {
   Article.find()
-    .populate('category')
+    .populate({
+      path: 'category',
+      select: 'title',
+      model: 'Category'
+    })
     .then(articles => res.json(articles))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/recents').get((req, res) => {
-  Article.find().sort({createdAt: 'desc'})
-    .select('title date createdAt')
-    .populate('category')
+  Article.find().sort({
+      createdAt: 'desc'
+    })
+    .populate({
+      path: 'category',
+      select: 'title',
+      model: 'Category'
+    })
     .then(articles => res.json(articles))
     .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -34,17 +44,30 @@ router.route('/admin/add').post((req, res) => {
     category
   });
 
+  Category.update({
+    _id: newArticle._id
+  }, {
+    $push: {
+      articles: category
+    }
+  })
+
   newArticle.save()
-  .then(() => res.redirect(`/articles/${newArticle.slug}`))
-  .then(() => res.status(201).json({
-    message : 'Article added!',
-    createdArticle : newArticle}))
-  .then(() => res.redirect(`/articles/${newArticle.slug}`))
-  .catch(err => res.status(400).json('Error: ' + err));
+    .then(() => res.redirect(`/articles/${newArticle.slug}`))
+    .then(() => res.status(201).json({
+      message: 'Article added!',
+      createdArticle: newArticle
+    }))
+    .then(() => res.redirect(`/articles/${newArticle.slug}`))
+    .catch(err => res.status(400).json('Error: ' + err));
+
+
 });
 
 router.route('/:slug').get((req, res) => {
-  Article.findOne({slug: req.params.slug})
+  Article.findOne({
+      slug: req.params.slug
+    })
     .then(article => res.json(article))
     .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -62,7 +85,7 @@ router.route('/admin/update/:id').post((req, res) => {
       article.markdown = req.body.markdown;
       article.author = req.body.author;
       article.slug = req.body.slug;
-    
+
       article.save()
         .then(() => res.json('Article updated!'))
         .catch(err => res.status(400).json('Error: ' + err));

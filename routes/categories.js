@@ -1,8 +1,8 @@
 const router = require('express').Router();
 let Category = require('../models/category.model');
-let Article = require('../models/article.model');
 let slugify = require('slugify')
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const Article = require('../models/article.model');
 
 
 router.route('/').get((req, res) => {
@@ -16,32 +16,46 @@ router.route('/').get((req, res) => {
 
 router.route('/category/:slug').get((req, res) => {
 
-    let slug = req.params.slug
+  let slug = req.params.slug
 
-      Category.findOne({slug: slug})
-      .populate('article')
-      .exec()
-        .then(data => {
-          res.status(200).json(data);
+  Category.findOne({
+      slug: slug
+    })
+    .exec()
+    .catch(err => res.status(400).json('Error: ' + err))
+    .then(category => {
+      Article.find({
+          category: category.id
         })
-         .catch(err => res.status(400).json('Error: ' + err));
-});
+        .populate({
+          path: 'category',
+          select: 'title',
+          model: 'Category'
+        })
+        .exec()
+        .then(articles => {
+          res.status(200).json(articles);
 
-      router.route('/admin/add').post((req, res) => {
-        const title = req.body.title;
-        const slug = slugify(req.body.title);
-        const newCategory = new Category({
-          _id: new mongoose.Types.ObjectId(),
-          title,
-          slug
         });
 
-        newCategory.save()
-          .then(() => res.status(201).json({
-            message: 'Article added!',
-            createdCategory: newCategory
-          }))
-          .catch(err => res.status(400).json('Error: ' + err));
-      });
+    });
+});
 
-      module.exports = router;
+router.route('/admin/add').post((req, res) => {
+  const title = req.body.title;
+  const slug = slugify(req.body.title);
+  const newCategory = new Category({
+    _id: new mongoose.Types.ObjectId(),
+    title,
+    slug
+  });
+
+  newCategory.save()
+    .then(() => res.status(201).json({
+      message: 'Article added!',
+      createdCategory: newCategory
+    }))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+module.exports = router;

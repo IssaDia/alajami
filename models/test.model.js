@@ -45,7 +45,7 @@ const articleSchema = new Schema({
   },
   category: {
     type: Schema.Types.ObjectId,
-    ref: "category"
+    ref: "Category"
   },
   sanitizedHtml: {
     type: String,
@@ -73,6 +73,38 @@ articleSchema.pre('validate', function (next) {
   next()
 })
 
+const categorySchema = new Schema({
+    _id: Schema.Types.ObjectId,
+    title: {type: String, unique: [true, 'Un article avec ce nom existe déja'], required: [true, 'Merci de spécifier un titre']} , 
+    articles: [{
+      type: Schema.Types.ObjectId,
+      ref: "Article", 
+    }],
+    slug: {
+      type: String
+    },
+  
+  }, {
+    timestamps: true,
+  });
+  
+  categorySchema.plugin(uniqueValidator);
+  
+  
+  categorySchema.pre('validate', function (next) {
+    if (this.title) {
+      this.slug = slugify(this.title, {
+        lower: true,
+        strict: true
+      })
+    }
+  
+    next()
+  })
+  
+  const Category = mongoose.model('Category', categorySchema);
+  
+  module.exports = Category;
 const Article = mongoose.model('Article', articleSchema)
 
 module.exports = Article;

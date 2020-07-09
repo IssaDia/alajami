@@ -9,6 +9,8 @@ export default function RecentsPosts() {
         axios.get('http://localhost:5000/articles/recents')
       .then(function (response) {
         setrecentsArticles(response.data)
+        
+        
       })
       .catch(function (error) {
         // handle error
@@ -21,7 +23,6 @@ export default function RecentsPosts() {
         e.preventDefault();
         document.getElementById("recents-posts").style.display = "none";
         let articleContainer = document.getElementById('article-container');
-        console.log(articleContainer);
         articleContainer.classList.add("col-md-12");
         articleContainer.classList.remove("col");
 
@@ -34,7 +35,7 @@ export default function RecentsPosts() {
                             <div className='col-md-12 recents-posts-info'>
                                 <p>15 juin 2020</p>
                                 <span>|</span>
-                                <p>{recentArticle.category[0].title}</p>
+                                <p>{recentArticle.category.title}</p>
                             </div>
                             </div>
                         </div>

@@ -24,7 +24,7 @@ export default function SingleTheme(props) {
     
     }, [slug])
 
-console.log(theme.title);
+console.log(theme);
 
 
     return (
