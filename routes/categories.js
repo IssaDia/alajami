@@ -21,24 +21,18 @@ router.route('/category/:slug').get((req, res) => {
   Category.findOne({
       slug: slug
     })
+    .populate([{
+      path: 'articles',
+      model: 'Article'
+    }])
     .exec()
+    .then(articles => {
+      
+      res.status(200).json(articles);
+
+    })
     .catch(err => res.status(400).json('Error: ' + err))
-    .then(category => {
-      Article.find({
-          category: category.id
-        })
-        .populate({
-          path: 'category',
-          select: 'title',
-          model: 'Category'
-        })
-        .exec()
-        .then(articles => {
-          res.status(200).json(articles);
 
-        });
-
-    });
 });
 
 router.route('/admin/add').post((req, res) => {

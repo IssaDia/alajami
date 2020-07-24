@@ -9,7 +9,7 @@ export default function RecentsPosts() {
         axios.get('http://localhost:5000/articles/recents')
       .then(function (response) {
         setrecentsArticles(response.data)
-        
+        console.log(response.data);
         
       })
       .catch(function (error) {

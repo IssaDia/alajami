@@ -44,13 +44,8 @@ router.route('/admin/add').post((req, res) => {
     category
   });
 
-  Category.update({
-    _id: newArticle._id
-  }, {
-    $push: {
-      articles: category
-    }
-  })
+
+
 
   newArticle.save()
     .then(() => res.redirect(`/articles/${newArticle.slug}`))
@@ -58,9 +53,12 @@ router.route('/admin/add').post((req, res) => {
       message: 'Article added!',
       createdArticle: newArticle
     }))
-    .then(() => res.redirect(`/articles/${newArticle.slug}`))
-    .catch(err => res.status(400).json('Error: ' + err));
 
+    Category.findOneAndUpdate(
+      { "_id": req.body.category },
+      { "$push": { "articles" : newArticle._id } },
+    )
+    .catch(err => res.status(400).json('Error: ' + err));
 
 });
 
