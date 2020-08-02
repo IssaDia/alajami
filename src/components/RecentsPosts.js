@@ -1,5 +1,7 @@
 import React, { useEffect, useState} from 'react'
 import axios from 'axios'
+import Col from 'react-bootstrap/Col'
+
 
 export default function RecentsPosts() {
 
@@ -23,8 +25,8 @@ export default function RecentsPosts() {
         e.preventDefault();
         document.getElementById("recents-posts").style.display = "none";
         let articleContainer = document.getElementById('article-container');
-        articleContainer.classList.add("col-md-12");
-        articleContainer.classList.remove("col");
+        articleContainer.classList.add("col-12");
+        articleContainer.classList.remove("col-8");
 
     }
 
@@ -43,7 +45,7 @@ export default function RecentsPosts() {
     } )
 
     return (
-        <div className='col-md-3 recents-posts animate__animated animate__backInUp' id='recents-posts'>
+        <Col xs={3} className='recents-posts animate__animated animate__backInUp' id='recents-posts'>
             <div id='recents-posts-container '>
                         <div className="recents-posts-header row">
                             <div className='col-md-12'>
@@ -57,6 +59,6 @@ export default function RecentsPosts() {
                         {recentsPostsWidget}
                         </div>     
             </div>
-        </div>
+        </Col>
     )
 }

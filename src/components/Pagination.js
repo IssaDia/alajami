@@ -1,4 +1,7 @@
 import React from "react"
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+
 
 const Pagination = ({
   itemsPerPage,
@@ -14,8 +17,8 @@ const Pagination = ({
   }
 
   return <>
-  <div className='row'>
-      <div className='col-md-12'>
+  <Row>
+      <Col xs={12}>
         <ul className="pagination">
           <li className={"page-item " + (currentPage === 1 && "disabled")}>
               <button className="page-link" onClick={() => handlePageChange(currentPage - 1)}>&laquo;</button>
@@ -33,9 +36,9 @@ const Pagination = ({
               <button className="page-link" onClick={() => handlePageChange(currentPage + 1)}>&raquo;</button>
           </li>
         </ul>
-      </div>
+      </Col>
     
-  </div>
+  </Row>
   </>;
 };
 

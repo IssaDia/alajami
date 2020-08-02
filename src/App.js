@@ -11,6 +11,8 @@ import Create from './components/Create'
 import Footer from './components/Footer'
 import ArticleProvider from './context/ArticleContext'
 import '../node_modules/font-awesome/css/font-awesome.min.css'
+import Container from 'react-bootstrap/Container'
+
 
 
 
@@ -18,7 +20,8 @@ function App() {
 
   return (
     <Router>
-      <div className='container-fluid'>
+      <Container>
+
       <Navbar />
       <ArticleProvider>
       <Route path="/" exact component={Home} />
@@ -30,7 +33,7 @@ function App() {
      
       <Route path="/test" component={ArticleProvider} />
       <Footer />
-      </div>
+      </Container>
     </Router>
   );
 }

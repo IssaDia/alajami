@@ -3,13 +3,17 @@ import axios from 'axios'
 import ThemeCard from '../components/ThemeCard'
 import Pagination from '../components/Pagination'
 import CardLoarders from './loaders/CardLoarders'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 
 export default function ThemesList() {
 
   const [themes, setthemes] = useState([])
-  const [loading, setloading] = useState(true)
+  const [loading, setloading] = useState(false)
 
   useEffect(() => {
+    
+    setloading(true);
     axios.get('http://localhost:5000/categories/')
   .then(function (response) {
     // handle success
@@ -33,17 +37,17 @@ export default function ThemesList() {
     setcurrentPage(page);
   };
 
-  const title = paginatedThemes.map ((theme, index) => {
+  const themedCards = paginatedThemes.map ((theme, index) => {
 
-     return <div className='col-md-4 card-container' key={index}>
-            {!loading ? <ThemeCard  title={theme.title} slug={theme.slug}/> : <CardLoarders key={index} />}
-            </div>
+     return <Col xs={4} className=' card-container' key={index}>
+            {loading ? <CardLoarders key={index} />  :  <ThemeCard  title={theme.title} slug={theme.slug}/>}
+            </Col>
      })
     return (
        <>
-          <div className='row'>
-              {title}
-          </div>
+          <Row>
+              {themedCards}
+          </Row>
         <Pagination itemsPerPage={itemsPerPage} length={themes.length} handlePageChange={handlePageChange} currentPage={currentPage}></Pagination>
      </>
         

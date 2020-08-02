@@ -1,49 +1,31 @@
-import React, { useEffect, useState} from 'react'
-import axios from 'axios'
+import React from 'react'
+import Col from 'react-bootstrap/Col'
+import { Link } from 'react-router-dom'
 
 
-export default function ThemeArticlesCard() {
-
-  const [articlesFromSpecificTheme, setarticlesFromSpecificTheme] = useState([])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const fetchArticles = await axios.get('http://localhost:5000/articles/')
-      .then(function (response) {
-        // handle success
-        setarticlesFromSpecificTheme(response.data);
-        
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-  }
-
-fetchData()
-  }, [])
+export default function ThemeArticlesCard(props) {
 
 
     return (
-        <div className='article-card-container'>
+        <Col xs={4} className='article-card-container'>
            <div className="card">
              <div className='card-background'>
              <img src="https://unsplash.it/400/608?image=123" alt="article-background" />
               <div className='card-article-overlay'>
                 <div className="card-article-overlay-content">
                 <ul className="card-article-meta">
-                    <li><a href="#0"><i className="fa fa-tag"></i> Html5/Css3</a></li>
-                    <li><a href="#0"><i className="fa fa-clock-o"></i> 2 min ago</a></li>
+                    <li><Link to="#0"><i className="fa fa-tag"></i> {props.category}</Link></li>
+                    <li><Link to="#0"><i className="fa fa-clock-o"></i> {props.date}</Link></li>
                   </ul>
-                  <a href="#0" className="card-article-title">How to create a card based article with HTML5 &amp; CSS3</a>
+                  <Link to={{pathname: `/themes/${props.slug}`}} className="card-article-title">{props.title}</Link>
                   <ul className="card-article-meta card-article-meta--last">
-                    <li><a href="#0"><i className="fa fa-user"></i> Mithicher</a></li>
-                    <li><a href="#0"><i className="fa fa-facebook-square"></i> Share</a></li>
+                    <li><Link to="#0"><i className="fa fa-user"></i> {props.author}</Link></li>
+                    <li><Link to="#0"><i className="fa fa-facebook-square"></i> Share</Link></li>
                   </ul>
                 </div>
               </div>
              </div>
            </div>
-        </div>
+        </Col>
     )
 }

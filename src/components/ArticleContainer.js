@@ -1,17 +1,13 @@
 import React from 'react'
 import ArticleTitle from './ArticleTitle'
 import ArticleText from './ArticleText'
+import Col from 'react-bootstrap/Col'
 
 export default function TextContainer() {
     return (
-        <div className='col' id='article-container'>
-                <div className='row'>
-                    <div className='col-md-12'>
-                        <ArticleTitle title='Ce site est dédié à la compréhension du coran'/>
-                        <ArticleText/>
-                    </div>
-                </div>
-        
-        </div>
+        <Col xs={8} id='article-container'>    
+            <ArticleTitle title='Ce site est dédié à la compréhension du coran'/>
+            <ArticleText/>
+        </Col>
     )
 }
