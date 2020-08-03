@@ -453,11 +453,16 @@ br {
 /* FOOTER */
 
 .site-footer {
-  background-color: #26272b;
+  background: #B3FFAB;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #12FFF7, #B3FFAB);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #12FFF7, #B3FFAB);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   padding: 45px 0 20px;
   font-size: 15px;
   line-height: 24px;
-  color: #737373;
+  color: #ffffff;
 }
 
 .site-footer hr {
@@ -478,11 +483,11 @@ br {
 }
 
 .site-footer a {
-  color: #737373;
+  color: #ffffff;
 }
 
 .site-footer a:hover {
-  color: #3366cc;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -496,7 +501,7 @@ br {
 }
 
 .footer-links a {
-  color: #737373
+  color: #ffffff;
 }
 
 .footer-links a:active,
@@ -559,7 +564,7 @@ br {
 .social-icons li.title {
   margin-right: 15px;
   text-transform: uppercase;
-  color: #96a2b2;
+  color: #ffffff;
   font-weight: 700;
   font-size: 13px
 }

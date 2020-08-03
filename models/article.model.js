@@ -26,7 +26,7 @@ const articleSchema = new Schema({
   },
   date: {
     type: Date,
-    default: Date.now(),
+    default: Date.now("<YYYY-mm-dd>"),
     trim: true
   },
   author: {

@@ -9,28 +9,32 @@ import ThemeArticlesList from '../components/ThemeArticlesList'
 export default function SingleTheme(props) {
 
     let { slug } = useParams()
-    const [themeArticles, setthemeArticles] = useState([])
+    const [singleThemeData, setSingleThemeData] = useState([])
+    const [articles, setArticles] = useState([])
+    const [loading, setloading] = useState(false)
+
 
     useLayoutEffect(() => {
+        setloading(true);
         axios.get('http://localhost:5000/categories/category/'+ slug)
     .then(function (response) {
         // handle success
-        setthemeArticles(response.data);
-        
+        setSingleThemeData(response.data)
+        setArticles(response.data.articles)
+        setloading(false)
         
     })
     .catch(function (error) {
         // handle error
-        console.log(error);
+        console.log(error)
     })
     
     }, [slug])
 
-
     return (
         <>
-            <Title title={themeArticles.title}/>
-            <ThemeArticlesList articles={themeArticles}></ThemeArticlesList>
+            <Title title={singleThemeData.title}/>
+            <ThemeArticlesList articles={articles} themeTitle={singleThemeData.title}></ThemeArticlesList>
         </>
     )
 }
