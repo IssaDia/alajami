@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function ArticleText() {
-    return (
-        <div>
-            <p className='article-text animate__animated animate__backInLeft'>
+export default function ArticleText () {
+  return (
+    <div>
+      <p className='article-text animate__animated animate__backInLeft'>
 
 Le Coran est le cœur vivant des musulmans, notre passé, notre présent et, plus encore,
 notre avenir. Il est le corps du Message et l’esprit de la Voie. Toutefois, parce que notre
@@ -30,8 +30,7 @@ coranique, elle diffère profondément du littéralisme.[1] En effet, notre rech
 sur le <strong>Sens littéral</strong>, c’est-à-dire ce qu’exprime sans ambiguïté le texte : « la détermination
 des faits selon l’énoncé », l’unité minimale de sens établie selon le Coran. Autrement dit, le
 Coran par lui-même ou explication du Coran par le Coran : <strong>tafsîr al-qur’ân bi-l-qur’ân</strong>.
-Pour ce faire, nous suivons une méthodologie rigoureuse que nous nommons <strong>Analyse
-Littérale du Coran</strong>. Il s’agit d’une méthode à même de déconstruire les cercles
+Pour ce faire, nous suivons une méthodologie rigoureuse que nous nommons <strong>AnalyseLittérale du Coran</strong>. Il s’agit d’une méthode à même de déconstruire les cercles
 herméneutiques à l’œuvre lorsque nous lisons le Coran, phénomène herméneutique la
 plupart du temps généré par l’exégèse islamique.[2] Cette méthodologie non-
 herméneutique est non-interprétative, car conçue pour court-circuiter le phénomène
@@ -67,8 +66,8 @@ personnel au Message coranique et non la recherche d’un “islam coranique”,
 nous ne sommes pas coraniste. Notre quête a pour unique objet de restituer au Coran,
 par le Coran lui-même, une place centrale au sein du parcours de foi de tout musulman.
 Ainsi, est-ce en toute humilité que nous proposons ces quelques Jalons sur la voie du
-Coran.<br />
-<strong>Dr al Ajamî</strong> : Docteur en médecine, Docteur en Littérature et langue arabes,
+Coran.<br /><strong>Dr al Ajamî</strong>
+ : Docteur en médecine, Docteur en Littérature et langue arabes,
 Coranologue, Théologien, Spécialiste de l’exégèse du Coran.
 Notre recherche fondamentale et académique porte sur l’étude des mécanismes
 cognitifs à l’œuvre lors du phénomène de compréhension. Ceci nous a amené à une
@@ -106,7 +105,6 @@ est enfin ouvert...<br />
 [4] L’ensemble des processus de notre méthodologie d’Analyse Littérale du Coran est
 exposé point par point à l’onglet « Comprendre le Coran », rubrique « Méthodologie ».
 3/3
-            </p>
-        </div>
-    )
+      </p>
+    </div>)
 }
