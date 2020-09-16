@@ -25,6 +25,7 @@ export default function CreateForm (setFieldValue) {
     axios.get('http://localhost:5000/categories/')
       .then(function (response) {
       // handle success
+        console.log(response)
         setcategories(response.data)
       }
       )
