@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import CKEditor from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 const validationSchema = Yup.object().shape({
   category: Yup.string().ensure().required('Merci de spécifier un théme'),
@@ -12,11 +14,12 @@ const validationSchema = Yup.object().shape({
     .max(255, 'Votre nom de l\'auteur doit comporter un maximum de 255 caractéres').required('Merci de spécifier un author')
 })
 
-export default function CreateForm (setFieldValue) {
+export default function CreateForm () {
+  const [formValues, setformValues] = useState()
+  const [markdownValue, setmarkdownValue] = useState({ markdown: '' })
   const [categories, setcategories] = useState([])
   const initialValues = {
     category: '',
-    markdown: '',
     title: '',
     author: ''
   }
@@ -25,7 +28,6 @@ export default function CreateForm (setFieldValue) {
     axios.get('http://localhost:5000/categories/')
       .then(function (response) {
       // handle success
-        console.log(response)
         setcategories(response.data)
       }
       )
@@ -35,6 +37,9 @@ export default function CreateForm (setFieldValue) {
       }
       )
   }, [])
+
+  console.log(formValues)
+
   const category = categories.map((category, index) => {
     return <option key={index} value={category._id}>{category.title}</option>
   })
@@ -44,22 +49,8 @@ export default function CreateForm (setFieldValue) {
         <div className='col-md-6 mx-auto form-create'>
           <h1>Ajouter un article</h1>
           <Formik
-            initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values, { setSubmitting, resetForm }) => {
-              setSubmitting(true)
-              // setassociatedValues([...associatedValues,values]);
-              console.log(values)
-              /*   setTimeout(()=>{
-              const apiUrl = `http://localhost:5000/articles/admin/add`;
-              axios.post(apiUrl,
-                associatedValues)
-                    .then((response) => {
-                      console.log(response);
-                    }, (error) => {
-                      console.log(error);
-                    });
-                setSubmitting(false);
-            }, 3000)  */
-            }}
+            initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => { 
+              setformValues(values) }}
           >
             {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
               <form className='col s12' onSubmit={handleSubmit}>
@@ -78,10 +69,17 @@ export default function CreateForm (setFieldValue) {
                 </div>
                 <div className='row'>
                   <div className='input-field col s12'>
-                    {/*
-                      <textarea className='materialize-textarea' name='markdown' value={values.markdown} onChange={handleChange} onBlur={handleBlur}></textarea>
-                        <label htmlFor='textarea1'>Contenu</label>
-                    */}
+                    <CKEditor
+                      editor={ClassicEditor} onInit={editor => {
+                      // You can store the "editor" and use when it is needed.
+                        console.log('Editor is ready to use!', editor)
+                      }}
+                      onChange={(event, editor) => {
+                        const data = editor.getData()
+                        setmarkdownValue({ markdown: data })
+                      }}
+                    />
+                    <label htmlFor='textarea1'>Contenu</label>
                     {touched.markdown && errors.markdown ? <span className='helper-text'>{errors.markdown}</span> : null}
                   </div>
                 </div>
