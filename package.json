@@ -20,7 +20,7 @@
     "font-awesome": "^4.7.0",
     "formik": "^2.1.4",
     "jsdom": "^16.2.2",
-    "marked": "^1.1.0",
+    "marked": "^4.0.10",
     "materialize-css": "^1.0.0-rc.2",
     "mongoose": "^5.9.14",
     "mongoose-unique-validator": "^2.0.3",
